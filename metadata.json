@@ -1,0 +1,6 @@
+{
+  "name": "Rural Utility Cost - Honeybee",
+  "description": "Beekeeping and apiary hub for rural and agricultural users.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,98 @@
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Hexagon, ShieldAlert } from 'lucide-react';
+import { useState } from 'react';
+import { cn } from '../lib/utils';
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const primaryNav = [
+    { name: 'Home', href: '/', isExternal: true },
+    { name: 'Plan', href: '/plan', isExternal: true },
+    { name: 'Forecast', href: '/forecast', isExternal: true },
+    { name: 'Compliance Vault', href: '/compliance-vault' },
+    { name: 'Inspector Mode', href: '/inspector-mode' },
+    { name: 'Honeybee', href: '/', isActive: true },
+    { name: 'My favorites', href: '/favorites' },
+  ];
+
+  return (
+    <>
+      <div className="bg-red-50 border-b border-red-200 px-4 py-2 flex items-center justify-center gap-2 text-red-800 text-sm font-medium">
+        <ShieldAlert className="w-4 h-4 text-red-600" />
+        <span className="uppercase tracking-wider mr-2 font-bold">Red Flag Alert Status:</span> 
+        No Arsentic, Nitrate, or Coliform threshold violations detected in current sampling period. Verification Status: Pending Human Verification.
+      </div>
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-50 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center gap-3 group">
+                <div className="w-8 h-8 bg-amber-400 rounded-lg flex items-center justify-center font-bold text-slate-900 transition-colors">
+                  H
+                </div>
+                <h1 className="text-xl font-bold tracking-tight text-slate-900">
+                  Honeybee <span className="font-normal text-slate-400">Apiary Hub</span>
+                </h1>
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-1">
+              {primaryNav.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={cn(
+                    'px-3 py-2 text-sm font-medium transition-colors',
+                    (item.isActive || location.pathname === item.href)
+                      ? 'text-amber-600 border-b-2 border-amber-500 pb-1'
+                      : 'text-slate-600 hover:text-amber-600'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile menu button */}
+            <div className="flex lg:hidden items-center">
+              <button
+                type="button"
+                className="text-gray-500 hover:text-gray-600 p-3 -mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden border-t border-gray-100 bg-white shadow-lg absolute w-full left-0">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {primaryNav.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    'block px-3 py-3 rounded-md text-base font-medium transition-colors',
+                    (item.isActive || location.pathname === item.href)
+                      ? 'text-amber-600 border-l-4 border-amber-500 bg-amber-50'
+                      : 'text-slate-600 hover:text-amber-600 hover:bg-slate-50'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
+    </>
+  );
+}

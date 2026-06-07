@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F9FAFB;
+}
+
+.honeycomb-pattern {
+  background-color: #f9fafb;
+  background-image: radial-gradient(#FBBF24 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.tool-card {
+  transition: all 0.2s ease;
+}
+
+.tool-card:hover {
+  border-color: #FBBF24;
+  transform: translateY(-1px);
+}
+
+.heart-active {
+  color: #EF4444;
+  fill: #EF4444;
+}

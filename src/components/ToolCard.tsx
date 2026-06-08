@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
 import * as Icons from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Tool } from '../types';
 import { cn } from '../lib/utils';
 import { useFavorites } from '../hooks/useFavorites';
@@ -56,9 +57,12 @@ export function ToolCard({ tool }: ToolCardProps) {
 
       <div className="relative z-10 mt-auto flex justify-between items-center bg-transparent border-t-0 p-0">
         <span className="text-sm font-semibold text-slate-700 truncate mr-2">Outcome: <span className="text-blue-600">{tool.primaryOutcome}</span></span>
-        <button className="bg-amber-400 hover:bg-amber-500 text-slate-900 text-xs font-bold py-1.5 px-4 rounded-md transition-colors shrink-0">
+        <Link 
+          to={`/tool/${tool.id}`}
+          className="bg-amber-400 hover:bg-amber-500 text-slate-900 text-xs font-bold py-2 px-4 rounded-md transition-colors shrink-0 inline-flex items-center justify-center min-h-[36px]"
+        >
           Open Tool
-        </button>
+        </Link>
       </div>
     </div>
   );

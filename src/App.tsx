@@ -3,10 +3,11 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Favorites } from './pages/Favorites';
-import { About, Contact, Legal, License } from './pages/SharedPages';
 import { CookieBanner } from './components/CookieBanner';
 import { NotFound } from './pages/NotFound';
+import { ToolDetail } from './pages/ToolDetail';
 import { AnalyticsTracker } from './components/AnalyticsTracker';
+import { Portfolio } from './pages/Portfolio';
 
 export default function App() {
   return (
@@ -18,10 +19,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/legal" element={<Legal />} />
-            <Route path="/license" element={<License />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/tool/:toolId" element={<ToolDetail />} />
             {/* 404 Route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -32,3 +31,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
